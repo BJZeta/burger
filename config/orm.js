@@ -1,0 +1,27 @@
+var connection = require("../config/connection.js");
+
+var orm = {
+    selectAll: function (tableInput, cb) {
+        var queryString = "SELECT * FROM " + tableInput + ";";
+        connection.query(queryString, function (err, results) {
+            if (err) { throw err; }
+            cb(results);
+        });
+    },
+    createOne: function (table,newBurger, cb) {
+        var queryString = "INSERT INTO " + table + " (burger_name) VALUES (?)";
+         connection.query(queryString, newBurger , function (err,results) {
+             if (err) { throw err; }
+             cb(results);
+         });
+    },
+    updateOne: function (table,burger,cb){
+        var queryString = "UPDATE " + table + " SET devoured = 1 WHERE burger = " + burger;
+        connection.query(queryString, function (err,results) {
+            if (err) { throw err }
+            cb(results);
+        });
+    }
+};
+
+module.exports = orm;
