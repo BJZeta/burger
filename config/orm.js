@@ -8,9 +8,9 @@ var orm = {
             cb(results);
         });
     },
-    createOne: function (table,newBurger, cb) {
-        var queryString = "INSERT INTO " + table + " (burger_name) VALUES (?)";
-         connection.query(queryString, newBurger , function (err,results) {
+    createOne: function (table, col, val, cb) {
+        var queryString = "INSERT INTO " + table + "(" + col + ") VALUES (??)";
+         connection.query(queryString, col, val, function (err,results) {
              if (err) { throw err; }
              cb(results);
          });
